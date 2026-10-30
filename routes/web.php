@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'app');
+Route::redirect('/', '/imports');
 
 Route::inertia('imports', 'Imports')->name('Imports');
 

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Transaction Import</title>
-    @vite(['resources/js/app.js'])
+
+    @vite(['resources/css/app.css', 'resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])
+    <x-inertia::head>
+        <title>{{ config('app.name', 'Laravel') }}</title>
+    </x-inertia::head>
 </head>
-<body>
-<header>
-    <h1>System Importu Transkacji Bankowych - SITB</h1>
-</header>
-<div id="app"></div>
+<body class="font-sans antialiased">
+<x-inertia::app />
 </body>
 </html>
