@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Heading from "@/components/Heading.vue";
 import { fetchImports } from '@/api';
 import {ref, onMounted} from "vue";
 import ImportList from "@/components/ImportList.vue";
@@ -25,13 +24,14 @@ onMounted(load)
 </script>
 
 <template>
-    <heading title="Heading import VUE"></heading>
     <header>
         <h1>System Importu Transkacji Bankowych - SITB</h1>
     </header>
     <body>
-        <ImportList :imports="imports" @selected="(v) => { selectedId = v }" />
-        <UploadForm @uploaded="load" />
+        <div class="container-table-upload">
+            <ImportList :imports="imports" @selected="(v) => { selectedId = v }" />
+            <UploadForm @uploaded="load" />
+        </div>
         <ImportLogs v-if="selectedId != null" :import-id="selectedId" />
     </body>
 </template>

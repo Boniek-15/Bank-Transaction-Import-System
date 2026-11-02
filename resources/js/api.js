@@ -25,7 +25,6 @@ export async function uploadFile(file)
 
     const body = new FormData();
     body.append('file',file);
-    //|Tu gdzieś jest błąd z POST
     const res = await fetch('/api/imports', {method: 'POST', headers, body});
     const data = await res.json();
     if (!res.ok)

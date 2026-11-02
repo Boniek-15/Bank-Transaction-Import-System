@@ -27,12 +27,17 @@ watch(
 </script>
 
 <template>
-    <p v-if="loading">Loading…</p>
-    <p v-else-if="error">{{ error }}</p>
-    <p v-else-if="logs.length === 0">No logs for this import</p>
-    <li v-else v-for="log in logs" :key="log.id">
-        <span>{{ log.error_message }}</span> <small> Transaction: {{ log.transaction_id ?? '—' }}</small>
-    </li>
+    <div class="error-logs">
+        <h2>Error logs</h2>
+        <p v-if="loading">Loading…</p>
+        <p v-else-if="error">{{ error }}</p>
+        <p v-else-if="logs.length === 0">No error logs for this import</p>
+        <ul v-else>
+            <li v-for="log in logs" :key="log.id">
+                <span>{{ log.error_message }}</span> <small> Transaction: {{ log.transaction_id ?? '—' }}</small>
+            </li>
+        </ul>
+    </div>
 </template>
 
 <style scoped>

@@ -1,3 +1,91 @@
+:root{
+    margin: 0;
+    padding-inline: clamp(1rem, 5vw, 4rem);
+    background-color: #e6e6e6;
+    font-family: Arial;
+    font-size: 17px;
+}
 .table-rows:hover{
     background-color: lightgray;
 }
+.success{
+    color: green;
+}
+.partial{
+    color: orange;
+}
+.failed{
+    color: red;
+}
+.import-table{
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px 20px;
+    margin: 10px;
+    width: fit-content;
+}
+h2{
+    color: #06BA63;
+    margin: 15px 0 10px 0;
+}
+table {
+    text-align: center;
+}
+th,td{
+    padding: 5px 10px;
+}
+h1{
+    color: #06BA63;
+}
+.input-field{
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px 20px;
+    margin: 10px;
+    width: fit-content;
+    height: fit-content;
+}
+.file-btn,button{
+    background-color: #06BA63;
+    color: white;
+    border-radius: 10px;
+    border: solid 1px white ;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 15px;
+}
+.file-btn:hover,button:hover {
+    background: #4338ca;
+}
+#file-name{
+    margin-right: 15px;
+}
+input{
+    font-size: 16px;
+}
+.error-logs{
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px 20px;
+    margin: 10px;
+    width: fit-content;
+}
+.error-upload{
+    color: red;
+}
+.container-table-upload{
+    display: flex;
+}
+header{
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px 20px;
+    margin: 10px;
+}
+
+/*TODO:
+Data table
+panel logowania
+Tailwind
+*/
