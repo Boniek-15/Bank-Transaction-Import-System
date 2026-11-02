@@ -18,7 +18,6 @@ async function submit()
     try {
         await uploadFile(file.value)
         emit('uploaded')
-        console.log("UPLOADED")
     }
     catch (exception) {
         error.value = exception instanceof Error ? exception.message : 'Upload failed';

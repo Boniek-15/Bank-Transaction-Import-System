@@ -4,9 +4,11 @@ import { fetchImports } from '@/api';
 import {ref, onMounted} from "vue";
 import ImportList from "@/components/ImportList.vue";
 import UploadForm from "@/components/UploadForm.vue";
+import ImportLogs from "../components/ImportLogs.vue";
 
 const imports = ref([]);
 const error = ref();
+const selectedId = ref<number | null>(null)
 
 async function load() {
     try{
@@ -15,7 +17,6 @@ async function load() {
     {
         error.value = exception;
     }
-    console.log(imports.value)
 }
 
 onMounted(load)
@@ -29,8 +30,9 @@ onMounted(load)
         <h1>System Importu Transkacji Bankowych - SITB</h1>
     </header>
     <body>
-        <ImportList :imports="imports" />
+        <ImportList :imports="imports" @selected="(v) => { selectedId = v }" />
         <UploadForm @uploaded="load" />
+        <ImportLogs v-if="selectedId != null" :import-id="selectedId" />
     </body>
 </template>
 
