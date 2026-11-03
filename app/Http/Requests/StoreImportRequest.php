@@ -14,7 +14,7 @@ class StoreImportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'file' => ['required', 'file', 'extensions:csv,json,xml', 'max:10240'],
+            'file' => ['required', 'file', 'extensions:csv,json,xml'],
         ];
     }
 }

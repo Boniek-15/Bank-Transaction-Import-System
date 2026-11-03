@@ -1,91 +1,34 @@
-:root{
-    margin: 0;
-    padding-inline: clamp(1rem, 5vw, 4rem);
-    background-color: #e6e6e6;
-    font-family: Arial;
-    font-size: 17px;
-}
-.table-rows:hover{
-    background-color: lightgray;
-}
-.success{
-    color: green;
-}
-.partial{
-    color: orange;
-}
-.failed{
-    color: red;
-}
-.import-table{
-    background-color: white;
-    border-radius: 20px;
-    padding: 15px 20px;
-    margin: 10px;
-    width: fit-content;
-}
-h2{
-    color: #06BA63;
-    margin: 15px 0 10px 0;
-}
-table {
-    text-align: center;
-}
-th,td{
-    padding: 5px 10px;
-}
-h1{
-    color: #06BA63;
-}
-.input-field{
-    background-color: white;
-    border-radius: 20px;
-    padding: 15px 20px;
-    margin: 10px;
-    width: fit-content;
-    height: fit-content;
-}
-.file-btn,button{
-    background-color: #06BA63;
-    color: white;
-    border-radius: 10px;
-    border: solid 1px white ;
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-right: 15px;
-}
-.file-btn:hover,button:hover {
-    background: #4338ca;
-}
-#file-name{
-    margin-right: 15px;
-}
-input{
-    font-size: 16px;
-}
-.error-logs{
-    background-color: white;
-    border-radius: 20px;
-    padding: 15px 20px;
-    margin: 10px;
-    width: fit-content;
-}
-.error-upload{
-    color: red;
-}
-.container-table-upload{
-    display: flex;
-}
-header{
-    background-color: white;
-    border-radius: 20px;
-    padding: 15px 20px;
-    margin: 10px;
+@import "tailwindcss";
+
+@layer base {
+    html {
+        @apply px-[clamp(1rem,5vw,4rem)] bg-[#e6e6e6] font-[Arial] text-[17px];
+    }
+    h1 { @apply text-[#06BA63] text-3xl font-bold; }
+    h2 { @apply text-[#06BA63] text-2xl font-bold mt-[15px] mb-[10px]; }
+    h3 { @apply text-[#06BA63] text-xl font-bold text-left; }
+    table { @apply border-separate border-spacing-0 text-center; }
+    th, td { @apply py-[5px] px-[10px] border-b border-black; }
+    th { @apply cursor-pointer; }
+    tbody > tr { @apply hover:bg-[lightgray] hover:cursor-pointer; }
+    input { @apply text-base border border-black rounded-[10px] pl-[5px]; }
+    button { @apply bg-[#06BA63] text-white rounded-[10px] border border-white p-[10px] text-base cursor-pointer ml-[7.5px] mr-[7.5px] hover:bg-[#4338ca];}
+    label { @apply mr-[5px];}
 }
 
-/*TODO:
-Data table
-panel logowania
-Tailwind
-*/
+@layer components {
+    /* the repeated white "card" used by .import-table, .input-field, .error-logs, header */
+    .card { @apply bg-white rounded-[20px] py-[15px] px-5 m-[10px]; }
+
+    .btn {
+        @apply bg-[#06BA63] text-white rounded-[10px] border border-white p-[10px]
+        text-base cursor-pointer mr-[15px] hover:bg-[#4338ca];
+    }
+
+    /* DataTables generates these, so you can't add classes in the HTML */
+    .dt-layout-row {
+        @apply flex justify-between items-center my-[10px] nth-of-type-[2]:block;
+    }
+
+    .dt-input { @apply border border-black rounded-[10px] pl-[5px]}
+}

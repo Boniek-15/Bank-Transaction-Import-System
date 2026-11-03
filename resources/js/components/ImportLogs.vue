@@ -27,7 +27,7 @@ watch(
 </script>
 
 <template>
-    <div class="error-logs">
+    <div class="bg-white rounded-[20px] py-[15px] px-5 m-[10px] w-5/5 card">
         <h2>Error logs</h2>
         <p v-if="loading">Loading…</p>
         <p v-else-if="error">{{ error }}</p>
