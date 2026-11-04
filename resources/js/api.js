@@ -20,16 +20,21 @@ export async function fetchImport(id)
     return res.json();
 }
 
-export async function uploadFile(file)
+export async function uploadFile(chunksArray)
 {
+    let data;
+    for (let i = 0; i < chunksArray.length; i++) {
+        const body = new FormData();
+        body.append('file',chunksArray[i]);
+        body.append('chunk_index',i);
+        body.append('total_chunks', chunksArray.length);
+        const res = await fetch('/api/imports', {method: 'POST', headers, body});
+        data = await res.json()
+        if (!res.ok)
+        {
+            throw new Error(data.message ?? 'Upload failed');
+        }
 
-    const body = new FormData();
-    body.append('file',file);
-    const res = await fetch('/api/imports', {method: 'POST', headers, body});
-    const data = await res.json();
-    if (!res.ok)
-    {
-        throw new Error(data.message ?? 'Upload failed');
     }
     return data;
 }

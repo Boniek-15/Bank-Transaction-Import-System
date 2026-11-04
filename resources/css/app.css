@@ -12,7 +12,7 @@
     th { @apply cursor-pointer; }
     tbody > tr { @apply hover:bg-[lightgray] hover:cursor-pointer; }
     input { @apply text-base border border-black rounded-[10px] pl-[5px]; }
-    button { @apply bg-[#06BA63] text-white rounded-[10px] border border-white p-[10px] text-base cursor-pointer ml-[7.5px] mr-[7.5px] hover:bg-[#4338ca];}
+    button { @apply bg-[#06BA63] text-white rounded-[10px] border border-white p-[10px] text-base cursor-pointer ml-[7.5px] mr-[7.5px] hover:bg-[#059B53];}
     label { @apply mr-[5px];}
 }
 
@@ -20,15 +20,17 @@
     /* the repeated white "card" used by .import-table, .input-field, .error-logs, header */
     .card { @apply bg-white rounded-[20px] py-[15px] px-5 m-[10px]; }
 
-    .btn {
-        @apply bg-[#06BA63] text-white rounded-[10px] border border-white p-[10px]
-        text-base cursor-pointer mr-[15px] hover:bg-[#4338ca];
-    }
-
     /* DataTables generates these, so you can't add classes in the HTML */
     .dt-layout-row {
         @apply flex justify-between items-center my-[10px] nth-of-type-[2]:block;
     }
 
-    .dt-input { @apply border border-black rounded-[10px] pl-[5px]}
+    .dt-input { @apply border border-black rounded-[10px] pl-[5px]; }
+
+    .current { @apply bg-[#4338CA]; }
+
+    .dt-column-header{ @apply flex justify-center}
+
+    .dt-ordering-asc .dt-column-order::before { @apply content-['↑'] text-[#06BA63] text-[18px] ml-[5px]; }
+    .dt-ordering-desc .dt-column-order::before { @apply content-['↓'] text-[#06BA63] text-[18px] ml-[5px]; }
 }

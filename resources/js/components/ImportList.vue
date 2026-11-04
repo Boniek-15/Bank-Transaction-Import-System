@@ -25,12 +25,17 @@ const props = defineProps({ imports: Array })
 const emit = defineEmits(['selected'])
 
 const table = ref()
+const currentPage = ref(1)
 
 onMounted(() => {
-    const dt = table.value.dt   // property in v4; try table.value.dt() if undefined
+    const dt = table.value.dt
     dt.on('click', 'tbody tr', (e) => {
         const row = dt.row(e.currentTarget).data()
         if (row) emit('selected', row.id)
+    })
+    dt.on('page',function() {
+        var info = dt.page.info()
+        currentPage.value = info.page + 1
     })
 })
 
@@ -40,6 +45,8 @@ function formatDate(d)
     return formatter.format(temp)
 }
 
+console.log(table.value)
+
 </script>
 
 <template>
@@ -47,7 +54,7 @@ function formatDate(d)
         <h2>Import history</h2>
 
         <DataTable ref="table" :data="imports" :options="options" class="display" />
-
+        <p>Current page: {{currentPage}}</p>
 <!--        <table>-->
 <!--            <tr>-->
 <!--                <th>File name</th>-->

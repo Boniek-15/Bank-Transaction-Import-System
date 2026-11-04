@@ -24,12 +24,12 @@ function submit(){
             <p v-if="form.errors.username" class="text-[red]">
                 {{ form.errors.username }}
             </p>
-            <h3>Password:</h3>
+            <h3>Password</h3>
             <input type="password" name="password" v-model="form.password" placeholder="********" class="p-[8px] w-4/5"/>
             <p v-if="form.errors.password" class="text-[red]">
                 {{ form.errors.password }}
             </p>
-            <h3>Confirm password:</h3>
+            <h3>Confirm password</h3>
             <input type="password" name="password_confirmation" v-model="form.password_confirmation" placeholder="********" class="p-[8px] w-4/5"/>
             <p v-if="form.errors.password_confirmation" class="text-[red]">
                 {{ form.errors.password_confirmation }}
