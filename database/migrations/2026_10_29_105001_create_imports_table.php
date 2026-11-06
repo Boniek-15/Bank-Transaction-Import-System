@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedInteger('successful_records')->default(0);
             $table->unsignedInteger('failed_records')->default(0);
             $table->string('status');
+            $table->uuid('upload_id')->unique();
             $table->timestamp('created_at')->useCurrent();
         });
     }

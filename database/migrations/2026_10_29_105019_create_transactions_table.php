@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('transaction_date');
             $table->decimal('amount');
             $table->string('currency',3);
+            $table->foreignId('import_id')->constrained('imports')->cascadeOnDelete();
             $table->timestamp('created_at')->useCurrent();
         });
     }

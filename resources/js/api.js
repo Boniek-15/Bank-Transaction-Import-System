@@ -20,15 +20,16 @@ export async function fetchImport(id)
     return res.json();
 }
 
-export async function uploadFile(chunksArray)
+export async function uploadFile(chunksArray, uploadId)
 {
     let data;
     for (let i = 0; i < chunksArray.length; i++) {
         const body = new FormData();
+        body.append('upload_id',uploadId);
         body.append('file',chunksArray[i]);
         body.append('chunk_index',i);
         body.append('total_chunks', chunksArray.length);
-        const res = await fetch('/api/imports', {method: 'POST', headers, body});
+        const res = await fetch('/api/imports/chunk', {method: 'POST', headers, body});
         data = await res.json()
         if (!res.ok)
         {

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Models\Import;
+use Inertia\Inertia;
 
 Route::middleware('guest')->group(function () {
     Route::redirect('/', 'login');
@@ -14,7 +16,11 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::inertia('/imports', 'Imports')->name('Imports');
+    Route::get('/imports', function () {
+        return Inertia::render('Imports', [
+            'imports' => Import::latest('id')->get()
+        ]);
+    })->name('Imports');
     Route::post('/logout',[LoginController::class, 'logout']);
 });
 //Route::inertia('/import', 'Imports')->name('import');

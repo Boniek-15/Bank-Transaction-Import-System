@@ -3,5 +3,5 @@
 namespace App\Services\Parsers;
 interface Parser
 {
-    public function parse(string $file_path): array;
+    public function parse(string $filePath);
 }

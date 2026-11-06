@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import DataTable, { Column } from 'datatables.net-vue3';
 import DtCore, { Options } from 'datatables.net';
-import { ref,onMounted } from 'vue'
+import { router } from '@inertiajs/vue3'
+import { ref,onMounted,onUnmounted } from 'vue'
 
 DataTable.use(DtCore);
 
@@ -26,6 +27,7 @@ const emit = defineEmits(['selected'])
 
 const table = ref()
 const currentPage = ref(1)
+const interval = ref();
 
 onMounted(() => {
     const dt = table.value.dt
@@ -37,7 +39,23 @@ onMounted(() => {
         var info = dt.page.info()
         currentPage.value = info.page + 1
     })
+    interval.value = setInterval(() => {
+        router.reload({
+            only: ['imports'],
+            onSuccess: (page) => {
+                const newData = page.props.imports
+
+                dt.clear()
+                dt.rows.add(newData)
+                dt.draw(false)
+            }
+        })
+    }, 3000)
 })
+
+onUnmounted(() => {
+   clearInterval(interval.value);
+});
 
 function formatDate(d)
 {
