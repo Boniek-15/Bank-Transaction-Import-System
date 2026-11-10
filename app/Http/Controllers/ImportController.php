@@ -81,7 +81,7 @@ class ImportController extends Controller
         ]);
     }
 
-    public function complete(Request $request)
+    public function complete(Request $request, ImportService $service)
     {
         set_time_limit(900);
         $validated = $request->validate([
@@ -141,7 +141,7 @@ class ImportController extends Controller
         fclose($output);
 
         $import = Import::where('upload_id', $validated['upload_id'])->firstOrFail();
-        ProcessImportJob::dispatch($import->id)->onQueue('imports');;
+        $service->handle($import);
 
         Storage::deleteDirectory($directory);
 

@@ -50,7 +50,7 @@ onMounted(() => {
                 dt.draw(false)
             }
         })
-    }, 3000)
+    }, 2000)
 })
 
 onUnmounted(() => {

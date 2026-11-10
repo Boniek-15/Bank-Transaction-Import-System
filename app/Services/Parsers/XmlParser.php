@@ -2,27 +2,40 @@
 
 namespace App\Services\Parsers;
 use App\Exceptions\InvalidImportFileException;
-use App\Services\Parsers\Parser;
-use function PHPUnit\Framework\isList;
 
 class XmlParser implements Parser
 {
-    public function parse(string $filePath): array
+    public function parse(string $filePath): \Generator
     {
-        $xml = simplexml_load_file($filePath);
-        if($xml === false)
+        $xmlReader = new \XMLReader();
+        if(!$xmlReader->open($filePath))
         {
             throw new InvalidImportFileException('Invalid XML file.');
         }
-        $rows = [];
-        foreach ($xml->transaction as $node) {
-            $row = [];
-            foreach ($node->children() as $name => $value) {
-                $row[$name] = trim((string) $value);
+        $row = [];
+        try {
+            while($xmlReader->read()) {
+                if ($xmlReader->nodeType == $xmlReader::ELEMENT) {
+                    if ($xmlReader->localName == 'transaction') {
+                        $row = [];
+                        continue;
+                    }
+                    $name = $xmlReader->localName;
+                    $value = $xmlReader->readString();
+                    $row[$name] = $value;
+                }
+                if ($xmlReader->nodeType == $xmlReader::END_ELEMENT) {
+                    if ($xmlReader->localName == 'transaction') {
+                        yield $row;
+                    }
+                }
             }
-            $rows[] = $row;
         }
-
-        return $rows;
+        catch (Throwable $throwable) {
+            throw new RuntimeException($throwable->getMessage());
+        }
+        finally{
+            $xmlReader->close();
+        }
     }
 }

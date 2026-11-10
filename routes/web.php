@@ -23,4 +23,8 @@ Route::middleware('auth')->group(function () {
     })->name('Imports');
     Route::post('/logout',[LoginController::class, 'logout']);
 });
-//Route::inertia('/import', 'Imports')->name('import');
+
+
+// TODO:
+//bus bach - wyswietlanie progresu
+//optymalizacja do 3 min (kilku workerow itp)

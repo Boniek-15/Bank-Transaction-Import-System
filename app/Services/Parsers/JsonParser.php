@@ -2,23 +2,38 @@
 
 namespace App\Services\Parsers;
 use App\Exceptions\InvalidImportFileException;
-use JsonException;
 use App\Services\Parsers\Parser;
+use \JsonMachine\Items;
+use \JsonMachine\JsonDecoder\ExtJsonDecoder;
 
 class JsonParser implements Parser
 {
-    public function parse(string $filePath): array
+    public function parse(string $filePath): \Generator
     {
-        try {
-            $data = json_decode(file_get_contents($filePath),true);
-        } catch (JsonException){
-            throw new InvalidImportFileException('File contains invalid JSON');
-        }
-        if(!is_array($data))
-        {
-            throw new InvalidImportFileException('File contains invalid JSON');
-        }
+        $decoder = new ExtJsonDecoder(true);
+        $json = Items::fromFile($filePath,['decoder'=>$decoder]);
+        $columns = ['transaction_id','account_number','transaction_date','amount','currency'];
 
-        return $data;
+        try{
+            foreach($json as $row){
+                if(is_array($row)){
+                    foreach($columns as $column){
+                        if(!array_key_exists($column,$row)){
+                            throw new InvalidImportFileException('File contains invalid JSON structure');
+                        }
+                    }
+                    yield $row;
+                }
+                else{
+                    throw new InvalidImportFileException('File contains invalid JSON structure');
+                }
+            }
+        }
+        catch (InvalidImportFileException $e){
+            throw $e;
+        }
+        catch(\Exception $e){
+            throw new InvalidImportFileException('...', 0, $e);
+        }
     }
 }
