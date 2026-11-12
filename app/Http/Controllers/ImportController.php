@@ -71,7 +71,7 @@ class ImportController extends Controller
 
         if (!$path) {
             return response()->json([
-                'message' => 'Chunk upload failed'
+                'message' => 'Chunk uploads failed'
             ], 500);
         }
 
