@@ -34,7 +34,7 @@ function logout() {
 
 <template>
     <header class="card flex justify-between items-center">
-        <h1>Bank Transaction Import System - BTIS  Najszybszy czas: 239s - 80000 rekordów</h1>
+        <h1>Bank Transaction Import System - BTIS  Najszybsze czasy: 2m 42s/3m 42s</h1>
         <div class="flex items-center">
             <h3 class="text-[#06BA63] text-xl font-bold mr-[10px]">{{page.props.auth.user.username}}</h3>
             <button @click="logout">Logout</button>

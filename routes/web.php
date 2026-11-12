@@ -24,7 +24,3 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout',[LoginController::class, 'logout']);
 });
 
-
-// TODO:
-//bus bach - wyswietlanie progresu
-//optymalizacja do 3 min (kilku workerow itp)

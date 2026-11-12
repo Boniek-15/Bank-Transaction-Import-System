@@ -55,6 +55,10 @@ class ProcessImportJob implements ShouldQueue
 
             $total = $result['successful'] + $result['failed'];
 
+            $import->increment('successful_records', $result['successful']);
+            $import->increment('failed_records', $result['failed']);
+            $import->increment('processed_records', $total);
+
             $importChunk->processed_records = $total;
             $importChunk->successful_records = $result['successful'];
             $importChunk->failed_records = $result['failed'];

@@ -63,33 +63,13 @@ function formatDate(d)
     return formatter.format(temp)
 }
 
-console.log(table.value)
-
 </script>
 
 <template>
     <div  class="card bg-white rounded-[20px] py-[15px] px-5 m-[10px] w-3/5">
         <h2>Import history</h2>
 
-        <DataTable ref="table" :data="imports" :options="options" class="display" />
+        <DataTable ref="table" :data="props.imports" :options="options" class="display" />
         <p>Current page: {{currentPage}}</p>
-<!--        <table>-->
-<!--            <tr>-->
-<!--                <th>File name</th>-->
-<!--                <th>Total records</th>-->
-<!--                <th>Successful records</th>-->
-<!--                <th>Failed records</th>-->
-<!--                <th>Status</th>-->
-<!--&lt;!&ndash;                <th>Created time</th>&ndash;&gt;-->
-<!--            </tr>-->
-<!--            <tr v-for="item in imports" :key="item.id" class="table-rows" @click="emit('selected',item.id)">-->
-<!--                <td>{{ item.file_name }}</td>-->
-<!--                <td>{{ item.total_records }}</td>-->
-<!--                <td>{{ item.successful_records }}</td>-->
-<!--                <td>{{ item.failed_records }}</td>-->
-<!--                <td :class='item.status'>{{ item.status }}</td>-->
-<!--&lt;!&ndash;                <td>{{ formatDate(item.created_at) }}</td>&ndash;&gt;-->
-<!--            </tr>-->
-<!--        </table>-->
     </div>
 </template>
